@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+google-api-python-client
+sentence-transformers
+pandas
+scikit-learn
+xgboost
+joblib
+python-dotenv
+sqlalchemy
+psycopg2-binary
