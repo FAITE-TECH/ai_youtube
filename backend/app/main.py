@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from app.schemas import AnalyzeResponse, CampaignResultIn
 from app.utils import extract_video_id, get_video_meta, save_recommendations
 from app.recommender import analyze_video_and_recommend
@@ -10,6 +11,14 @@ load_dotenv()
 app = FastAPI(title="YouTube Promo AI")
 init_db()
 
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # React dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/analyze", response_model=AnalyzeResponse)
 def analyze(url: str):
